@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spittr</title>
+    <link rel="stylesheet" type="text/css" th:href="@{../static/CSS/style.css}"></link>
+</head>
+<body>
+    <h1>Recent Spittles</h1>
+        <li th:each="spittle,spittleState:${spittleList}">
+            <div class="spittleMessage" th:text="${spittle.message}">
+            </div>
+            <div>
+            	<span class="spittleId" th:text="${spittle.id}"></span>
+                <span class="spittleTime" th:text="${spittle.time}"></span>
+                <span class="spittleUsername" th:text="${spittle.username}"></span>
+                <span class="spittleLocation" th:text="'('+${spittle.latitude}+','+${spittle.longitude}+')'">
+                (x,y)
+                </span>
+            </div>
+        </li>
+</body>
+</html>

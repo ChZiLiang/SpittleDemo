@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Spittr</title>
+<link rel="stylesheet" type="text/css" th:href="@{../static/CSS/style.css}"></link>
+</head>
+<body>
+<h1>Register</h1>
+
+<form method="POST" th:object="${spitter}">
+
+        <label th:class="${#fields.hasErrors('firstName')}? 'error'">First Name</label>: 
+          <input type="text" th:field="*{firstName}" th:class="${#fields.hasErrors('firstName')}? 'error'" />
+        <span class="errors" th:if="${#fields.hasErrors('firstName')}">
+           <span th:text="${#fields.errors('firstName')}">Input is incorrect</span>
+        </span>
+        <br/>         
+        
+        <label th:class="${#fields.hasErrors('lastName')}? 'error'">Last Name</label>: 
+          <input type="text" th:field="*{lastName}" th:class="${#fields.hasErrors('lastName')}? 'error'" />
+         <span class="errors" th:if="${#fields.hasErrors('lastName')}">
+           <span th:text="${#fields.errors('lastName')}">Input is incorrect</span>
+        </span>
+        <br/>     
+  
+        <label>Email</label>: 
+          <input type="text" th:field="*{email}"/><br/>
+  
+        <label th:class="${#fields.hasErrors('username')}? 'error'">Username</label>: 
+          <input type="text" th:field="*{username}" th:class="${#fields.hasErrors('username')}? 'error'" />
+         <span class="errors" th:if="${#fields.hasErrors('username')}">
+           <span th:text="${#fields.errors('username')}">Input is incorrect</span>
+        </span>
+        <br/>     
+  
+        <label th:class="${#fields.hasErrors('password')}? 'error'">Password</label>: 
+          <input type="password" th:field="*{password}" th:class="${#fields.hasErrors('password')}? 'error'" />
+         <span class="errors" th:if="${#fields.hasErrors('password')}">
+           <span th:text="${#fields.errors('password')}">Input is incorrect</span>
+        </span>
+        <br/>     
+        <input type="submit" value="Register" />
+</form>
+</body>
+</html>
