@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.SpittleMapper">
+    <resultMap id="BaseResultMap" type="com.example.Spittle">
+        <!-- 定义主键 ,非常重要。如果是多个字段,则定义多个id -->
+        <!-- property：主键在pojo中的属性名 -->
+        <!-- column：主键在数据库中的列名 -->
+    	<id column="id" jdbcType="INTEGER" property="id"/>
+    	 <!-- 定义普通属性 -->
+        <result column="message" jdbcType="VARCHAR" property="message" />
+        <result column="time" jdbcType="TIMESTAMP" property="time" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+        <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+    </resultMap>
+    <!--可以使用useGeneratedKeys="true" keyProperty="id"需要在数据库中增加自增主键 -->
+    <insert id="addNewSpittle" parameterType="com.example.Spittle">
+        insert into spittle(message,time,username,longitude,latitude) values(#{message},#{time},#{username},#{longitude},#{latitude})
+    </insert>
+    
+    <select id="getAllSpittle" resultMap="BaseResultMap">
+        select * from spittle
+    </select>
+    
+    <select id="getSpittleFromSpitter" parameterType="java.lang.String" resultMap="BaseResultMap">
+    	select * from spittle where username=#{username}
+    </select>
+    
+    <delete id="deleteSpittle" parameterType="int">
+    	delete from spittle where id=#{id}
+    </delete>
+</mapper>

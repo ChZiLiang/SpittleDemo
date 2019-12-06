@@ -5,18 +5,29 @@
     <link rel="stylesheet" type="text/css" th:href="@{../static/CSS/style.css}"></link>
 </head>
 <body>
-    <h1>Recent Spittles</h1>
-        <li th:each="spittle,spittleState:${spittleList}">
+	<h1>Spittles</h1>
+	<p>Add Spittle</p>
+	<form method="POST" th:object="${spittle}">
+		<textarea rows="6" cols="80" th:field="*{message}">
+		</textarea>
+		</br>
+		<input type="submit" value="Send" />
+	</form>
+    <p>Recent Spittles</p>
+    <div>
+    	<li th:each="spittle,spittleState:${spittleList}">
             <div class="spittleMessage" th:text="${spittle.message}">
             </div>
             <div>
-            	<span class="spittleId" th:text="${spittle.id}"></span>
-                <span class="spittleTime" th:text="${spittle.time}"></span>
-                <span class="spittleUsername" th:text="${spittle.username}"></span>
-                <span class="spittleLocation" th:text="'('+${spittle.latitude}+','+${spittle.longitude}+')'">
+                <span class="spittleTime" th:text="'Send Time:'+${#dates.format(spittle.time,'yyyy-MM-dd HH:mm:ss')}"></span>
+                <span class="spittleUsername" th:text="'Send By:'+${spittle.username}"></span>
+                <span class="spittleLocation" th:text="'Send Location:('+${spittle.latitude}+','+${spittle.longitude}+')'">
                 (x,y)
                 </span>
             </div>
         </li>
+    </div>
+    <br/>
+    <a th:href="@{/homepage}">Return To Homepage</a>
 </body>
 </html>

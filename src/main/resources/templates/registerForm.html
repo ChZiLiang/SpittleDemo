@@ -7,7 +7,6 @@
 </head>
 <body>
 <h1>Register</h1>
-
 <form method="POST" th:object="${spitter}">
 
         <label th:class="${#fields.hasErrors('firstName')}? 'error'">First Name</label>: 
@@ -31,7 +30,10 @@
           <input type="text" th:field="*{username}" th:class="${#fields.hasErrors('username')}? 'error'" />
          <span class="errors" th:if="${#fields.hasErrors('username')}">
            <span th:text="${#fields.errors('username')}">Input is incorrect</span>
-        </span>
+         </span>
+         <span class="errors" th:if="${hasError}==true">
+		   <span>The username has been used.</span>
+		 </span>
         <br/>     
   
         <label th:class="${#fields.hasErrors('password')}? 'error'">Password</label>: 

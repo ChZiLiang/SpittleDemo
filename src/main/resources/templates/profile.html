@@ -7,6 +7,34 @@
 </head>
 <body>
 <h1>Your Profile</h1>
-<p th:text="'Hello '+${spitter.username}+'!'"></p>
+<div>
+	<p th:text="'Welcome '+${spitter.username}+'!'"></p>
+	</br>
+	<p th:text="'用户名：'+${spitter.username}"></p>
+	</br>
+	<p th:text="'姓名：'+${spitter.firstName}+'.'+${spitter.lastName}"></p>
+	</br>
+	<p th:text="'邮箱：'+${spitter.email}"></p>
+	</br>
+	<p th:text="'注册时间:'+${#dates.format(spitter.registationDate,'yyyy-MM-dd')}"></p>
+	</br>
+	<a th:href="@{/spitter/updateSpitterInfo}">Update Your Profile</a>
+</div>
+<h2>Your Spittles</h2>
+<div>
+	<li th:each="spittle,spittleState:${spittleList}">
+		<div class="spittleMessage" th:text="${spittle.message}"></div>
+            <div>
+                <span class="spittleTime" th:text="'Send Time:'+${#dates.format(spittle.time,'yyyy-MM-dd HH:mm:ss')}"></span>
+                <span class="spittleUsername" th:text="'Send By:'+${spittle.username}"></span>
+                <span class="spittleLocation" th:text="'Send Location:('+${spittle.latitude}+','+${spittle.longitude}+')'">
+                (x,y)
+                </span>
+            </div>
+            <button type="submit"><a th:href="@{'/spitter/deleteSpittle/'+${spittle.id}}">delete this spittle</a></button>
+     </li>
+</div>
+</br>
+<a th:href="@{/homepage}">Return To Homepage</a>
 </body>
 </html>

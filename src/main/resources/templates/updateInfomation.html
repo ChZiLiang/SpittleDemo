@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Spittr</title>
+<link rel="stylesheet" type="text/css" th:href="@{../static/CSS/style.css}"></link>
+</head>
+<body>
+<h1>Register</h1>
+<form method="POST" th:object="${spitter}">
+
+		<label>Username</label>: 
+        	<span th:text="*{username}">Spittle Username</span>
+        <br/>  
+           
+        <label th:class="${#fields.hasErrors('firstName')}? 'error'">First Name</label>: 
+          <input type="text" th:field="*{firstName}" th:value="*{firstName}" th:class="${#fields.hasErrors('firstName')}? 'error'" />
+        <span class="errors" th:if="${#fields.hasErrors('firstName')}">
+           <span th:text="${#fields.errors('firstName')}">Input is incorrect</span>
+        </span>
+        <br/>         
+        
+        <label th:class="${#fields.hasErrors('lastName')}? 'error'">Last Name</label>: 
+          <input type="text" th:field="*{lastName}" th:value="*{lastName}" th:class="${#fields.hasErrors('lastName')}? 'error'" />
+         <span class="errors" th:if="${#fields.hasErrors('lastName')}">
+           <span th:text="${#fields.errors('lastName')}">Input is incorrect</span>
+        </span>
+        <br/>     
+  
+        <label>Email</label>: 
+          <input type="text" th:field="*{email}" th:value="*{email}"/>
+          <br/>
+ 
+        <input type="submit" value="Update" />
+</form>
+<br/>
+<a th:href="@{'/spitter/'+${spitter.username}}">Return To Profile</a>
+</body>
+</html>

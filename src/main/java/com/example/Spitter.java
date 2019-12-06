@@ -8,6 +8,7 @@ public class Spitter {
     @NotNull
     @Size(min=2,max=30)
     private String firstName;
+    
     @NotNull
     @Size(min=2,max=30)
     private String lastName;
@@ -63,8 +64,9 @@ public class Spitter {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    
     public Date getRegistationDate() {
+    	System.out.println(registationDate);
         return registationDate;
     }
 

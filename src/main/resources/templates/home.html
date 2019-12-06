@@ -7,7 +7,15 @@
 </head>
 <body>
 <h1>Welcome to Spittr</h1>
+<div th:if="${username}==null">
 <a th:href="@{/spittles}">Spittles</a>
 <a th:href="@{/spitter/register}">Register</a>
+<a th:href="@{/spitter/login}">Login</a>
+</div>
+<div th:if="${username}!=null">
+<a th:href="@{/spittles}">Spittles</a>
+<a th:href="@{/spitter/logout}">Logout</a>
+<a th:href="@{'/spitter/'+${username}}" th:text="${username}+' profile'">Profile</a>
+</div>
 </body>
 </html>
