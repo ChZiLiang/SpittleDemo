@@ -2,20 +2,43 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Spittr</title>
-<link rel="stylesheet" type="text/css" th:href="@{../static/CSS/style.css}"></link>
+<title>轻談</title>
+<!-- 引入CSS -->
+<link rel="stylesheet" href="./plugins/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+</head>
 </head>
 <body>
-<h1>Welcome to Spittr</h1>
-<div th:if="${username}==null">
-<a th:href="@{/spittles}">Spittles</a>
-<a th:href="@{/spitter/register}">Register</a>
-<a th:href="@{/spitter/login}">Login</a>
-</div>
-<div th:if="${username}!=null">
-<a th:href="@{/spittles}">Spittles</a>
-<a th:href="@{/spitter/logout}">Logout</a>
-<a th:href="@{'/spitter/'+${username}}" th:text="${username}+' profile'">Profile</a>
-</div>
+	<div class="navbar navbar-expand-lg navbar-light bg-light"
+		th:replace="nav::navbar"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-12" style="height: 30%"></div>
+			<div class="col-xs-12 col-md-12" style="height: 20%">
+				<div th:if="${username}==null">
+					<h1 class="text-center text-nowrap" style="width:80%;margin:0 auto;">欢 迎 来 到 轻 談 社 区 !</h1>
+				</div>
+				<div th:if="${username}!=null">
+					<h1 class="text-center text-nowrap" style="width:80%;margin:0 auto;" th:text="'欢 迎 回 来 , '+${username}+' !'"></h1>
+				</div>
+			</div>
+			<div class="col-xs-12 col-md-12" style="height: 10%"></div>
+			<div class="col-xs-12 col-md-12" style="height: 20%">
+				<div class="input-group mb-3" style="width:70%;margin:0 auto;">
+					<input type="text" class="form-control"
+						placeholder="搜索发言，用户"
+						aria-label="Recipient's username" aria-describedby="button-addon2">
+					<div class="input-group-append">
+						<button class="btn btn-outline-secondary" type="button"
+							id="button-addon2">搜索</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-md-12" style="height: 20%"></div>
+		</div>
+	</div>
 </body>
+<!-- 引入js -->
+<script src="./plugins/jquery/js/jquery-3.4.1.min.js"></script>
+<script src="./plugins/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+<script src="./js/SetSize.js"></script>
 </html>

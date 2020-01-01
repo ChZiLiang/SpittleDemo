@@ -2,47 +2,77 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Spittr</title>
-<link rel="stylesheet" type="text/css" th:href="@{../static/CSS/style.css}"></link>
+<title>轻談——注册</title>
+<link rel="stylesheet"
+	href="../plugins/bootstrap-4.4.1-dist/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Register</h1>
-<form method="POST" th:object="${spitter}">
+	<div class="navbar navbar-expand-lg navbar-light bg-light"
+		th:replace="nav::navbar"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-12" style="height: 5%"></div>
+			<div class="col-xs-12 col-md-12" style="height: 10%">
+				<h1 class="text-center text-nowrap">用户注册</h1>
+			</div>
+			<div class="col-xs-12 col-md-12" style="height: 5%"></div>
+			<div class="col-xs-6 col-md-6 offset-md-3" style="height: 80%">
+				<form class="form-row" method="POST" th:object="${spitter}" onsubmit="return checkForm()">
+					<div class="form-group col-xs-12 col-md-6">
+						<label for="firstname" class="col-xs-4 col-md-4 control-label">姓氏</label>
+						<div class="col-xs-12 col-md-12">
+							<input id="firstname" type="text" th:field="*{firstName}"
+								class="form-control" placeholder="请输入用户姓氏" />
+							<div class="invalid-feedback" id="firstname-feedback"></div>
+						</div>
+					</div>
+					<div class="form-group col-xs-12 col-md-6">
+						<label for="lastname" class="col-xs-4 col-md-4 control-label">名字</label>
+						<div class="col-xs-12 col-md-12">
+							<input id="lastname" type="text" th:field="*{lastName}"
+								class="form-control" placeholder="请输入用户的名字" />
+							<div class="invalid-feedback" id="lastname-feedback"></div>
+						</div>
+					</div>
+					<div class="form-group col-xs-12 col-md-12">
+						<label for="email" class="col-xs-4 col-md-4 control-label">Email</label>
+						<div class="col-xs-12 col-md-12">
+							<input id="email" type="text" th:field="*{email}"
+								class="form-control" placeholder="请输入注册邮箱" />
+							<div class="invalid-feedback" id="email-feedback"></div>
+						</div>
+					</div>
+					<div class="form-group col-xs-12 col-md-12">
+						<label for="username" class="col-xs-4 col-md-4 control-label">用户名</label>
+						<div class="col-xs-12 col-md-12">
+							<input id="username" type="text" th:field="*{username}"
+								class="form-control" placeholder="请输入用户名" />
+							<div class="invalid-feedback" id="username-feedback"></div>
+						</div>
+					</div>
+					<div class="form-group col-xs-12 col-md-12">
+						<label for="mima" class="col-xs-4 col-md-4 control-label">密码</label>
+						<div class="col-xs-12 col-md-12">
+							<input id="mima" type="password" th:field="*{password}"
+								class="form-control" placeholder="请输入用户密码" />
+							<div class="invalid-feedback" id="password-feedback"></div>
+						</div>
+					</div>
+					<div class="form-group col-xs-12 col-md-12">
+						<div style="text-align: center">
+							<input class="btn btn-primary" type="submit" value="注册">
+							<!--  <botton class="btn" type="submit">登录</botton> -->
+						</div>
+					</div>
+				</form>
+			</div>
 
-        <label th:class="${#fields.hasErrors('firstName')}? 'error'">First Name</label>: 
-          <input type="text" th:field="*{firstName}" th:class="${#fields.hasErrors('firstName')}? 'error'" />
-        <span class="errors" th:if="${#fields.hasErrors('firstName')}">
-           <span th:text="${#fields.errors('firstName')}">Input is incorrect</span>
-        </span>
-        <br/>         
-        
-        <label th:class="${#fields.hasErrors('lastName')}? 'error'">Last Name</label>: 
-          <input type="text" th:field="*{lastName}" th:class="${#fields.hasErrors('lastName')}? 'error'" />
-         <span class="errors" th:if="${#fields.hasErrors('lastName')}">
-           <span th:text="${#fields.errors('lastName')}">Input is incorrect</span>
-        </span>
-        <br/>     
-  
-        <label>Email</label>: 
-          <input type="text" th:field="*{email}"/><br/>
-  
-        <label th:class="${#fields.hasErrors('username')}? 'error'">Username</label>: 
-          <input type="text" th:field="*{username}" th:class="${#fields.hasErrors('username')}? 'error'" />
-         <span class="errors" th:if="${#fields.hasErrors('username')}">
-           <span th:text="${#fields.errors('username')}">Input is incorrect</span>
-         </span>
-         <span class="errors" th:if="${hasError}==true">
-		   <span>The username has been used.</span>
-		 </span>
-        <br/>     
-  
-        <label th:class="${#fields.hasErrors('password')}? 'error'">Password</label>: 
-          <input type="password" th:field="*{password}" th:class="${#fields.hasErrors('password')}? 'error'" />
-         <span class="errors" th:if="${#fields.hasErrors('password')}">
-           <span th:text="${#fields.errors('password')}">Input is incorrect</span>
-        </span>
-        <br/>     
-        <input type="submit" value="Register" />
-</form>
+		</div>
+	</div>
 </body>
+<!-- 引入js -->
+<script src="../plugins/jquery/js/jquery-3.4.1.min.js"></script>
+<script src="../plugins/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+<script src="../js/SetSize.js"></script>
+<script src="../js/registerForm.js"></script>
 </html>

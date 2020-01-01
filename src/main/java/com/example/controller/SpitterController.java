@@ -21,6 +21,7 @@ import org.hibernate.validator.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Controller
@@ -33,19 +34,21 @@ public class SpitterController {
     private SpittleService spittleService;
     
     @RequestMapping(value="/register",method=GET)
-    public String showRegistrationForm(Model model){
+    public String showRegistrationForm(Model model,HttpServletRequest request){
     	model.addAttribute(new Spitter());
+    	model.addAttribute("url","/spitter/register");
         return "registerForm";
     }
     @RequestMapping(value="/register",method=POST)
-    public String processRegistration(@Valid Spitter spitter, Errors errors,Model model,HttpServletResponse response){
-        if(errors.hasErrors()){
-            return "registerForm";
-        }
+    public String processRegistration(Spitter spitter,Model model,HttpServletResponse response){
         //调用service
+        //spitter.setFirstName(new String(spitter.getFirstName().getBytes(),"UTF-8"));
+        //spitter.setLastName(new String(spitter.getLastName().getBytes(),"UTF-8"));
+        //System.out.println(spitter.getFirstName());
         boolean hasError=spitterService.addNewSpitter(spitter);
         if(hasError==true) {
         	model.addAttribute("hasError",hasError);
+        	model.addAttribute("url","/spitter/register");
         	return "registerForm";
         }
         else {
@@ -66,8 +69,9 @@ public class SpitterController {
     }
     
     @RequestMapping(value="/login",method=GET)
-    public String showLoginForm(Model model) {
+    public String showLoginForm(Model model,HttpServletRequest request) {
     	model.addAttribute(new Spitter());
+    	model.addAttribute("url",request.getRequestURI());
     	return "login";
     }
     

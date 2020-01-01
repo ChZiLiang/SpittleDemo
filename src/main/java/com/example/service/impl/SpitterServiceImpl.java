@@ -61,4 +61,15 @@ public class SpitterServiceImpl implements SpitterService{
 		}
 	}
 
+	@Override
+	public boolean judgeUsernameOnly(String username) {
+		// TODO Auto-generated method stub
+		Spitter user=getSpitterByUsername(username);
+		if(user==null) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+
 }

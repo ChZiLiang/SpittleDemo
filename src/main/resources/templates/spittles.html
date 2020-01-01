@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Spittr</title>
-    <link rel="stylesheet" type="text/css" th:href="@{../static/CSS/style.css}"></link>
+    <title>轻談——发言</title>
+    <!-- 引入CSS -->
+<link rel="stylesheet" href="./plugins/bootstrap-4.4.1-dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1>Spittles</h1>
-	<p>Add Spittle</p>
-	<form method="POST" th:object="${spittle}">
+	<div class="navbar navbar-expand-lg navbar-light bg-light"
+		th:replace="nav::navbar"></div>
+	<div class="container">
+		<div class="row">
+		<div class="col-xs-12 col-md-12" style="height: 20%">
+		<form method="POST" th:object="${spittle}">
 		<textarea rows="6" cols="80" th:field="*{message}">
 		</textarea>
-		</br>
-		<input type="submit" value="Send" />
-	</form>
+		<input type="submit" value="发言" />
+		</form>
+		</div>
+		
+		</div>
+	</div>
     <p>Recent Spittles</p>
     <div>
     	<li th:each="spittle,spittleState:${spittleList}">
@@ -30,4 +37,8 @@
     <br/>
     <a th:href="@{/homepage}">Return To Homepage</a>
 </body>
+<!-- 引入js -->
+<script src="../plugins/jquery/js/jquery-3.4.1.min.js"></script>
+<script src="../plugins/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+<script src="../js/SetSize.js"></script>
 </html>
