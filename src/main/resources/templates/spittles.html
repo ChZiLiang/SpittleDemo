@@ -1,41 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>轻談——发言</title>
-    <!-- 引入CSS -->
-<link rel="stylesheet" href="./plugins/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+<meta charset="UTF-8">
+<title>轻談——发言</title>
+<!-- 引入CSS -->
+<link rel="stylesheet"
+	href="./plugins/bootstrap-4.4.1-dist/css/bootstrap.min.css">
 </head>
 <body>
 	<div class="navbar navbar-expand-lg navbar-light bg-light"
 		th:replace="nav::navbar"></div>
 	<div class="container">
 		<div class="row">
-		<div class="col-xs-12 col-md-12" style="height: 20%">
-		<form method="POST" th:object="${spittle}">
-		<textarea rows="6" cols="80" th:field="*{message}">
-		</textarea>
-		<input type="submit" value="发言" />
-		</form>
-		</div>
-		
+			<div class="col-xs-12 col-md-12" style="height: 5%"></div>
+			<div class="col-xs-12 col-md-12" style="height: 40%">
+				<form method="POST" th:object="${spittle}">
+					<div  class="form-group col-xs-12 col-md-8 offset-md-2">
+						<textarea class="form-control" rows="6" th:field="*{message}">
+						</textarea>
+					</div>
+					<div class="form-group col-xs-12 col-md-8 offset-md-2">
+						<div style="text-align: right">
+							<input class="btn btn-primary" type="submit" value="发言">
+							<!--  <botton class="btn" type="submit">登录</botton> -->
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="col-xs-12 col-md-12" style="height: 5%"></div>
+			<div class="col-xs-12 col-md-12" style="height: 45%">
+				<p>Recent Spittles</p>
+				<div>
+					<li th:each="spittle,spittleState:${spittleList}">
+						<div class="spittleMessage" th:text="${spittle.message}"></div>
+						<div>
+							<span class="spittleTime"
+								th:text="'Send Time:'+${#dates.format(spittle.time,'yyyy-MM-dd HH:mm:ss')}"></span>
+							<span class="spittleUsername"
+								th:text="'Send By:'+${spittle.username}"></span> <span
+								class="spittleLocation"
+								th:text="'Send Location:('+${spittle.latitude}+','+${spittle.longitude}+')'">
+								(x,y) </span>
+						</div>
+					</li>
+				</div>
+			</div>
 		</div>
 	</div>
-    <p>Recent Spittles</p>
-    <div>
-    	<li th:each="spittle,spittleState:${spittleList}">
-            <div class="spittleMessage" th:text="${spittle.message}">
-            </div>
-            <div>
-                <span class="spittleTime" th:text="'Send Time:'+${#dates.format(spittle.time,'yyyy-MM-dd HH:mm:ss')}"></span>
-                <span class="spittleUsername" th:text="'Send By:'+${spittle.username}"></span>
-                <span class="spittleLocation" th:text="'Send Location:('+${spittle.latitude}+','+${spittle.longitude}+')'">
-                (x,y)
-                </span>
-            </div>
-        </li>
-    </div>
-    <br/>
-    <a th:href="@{/homepage}">Return To Homepage</a>
 </body>
 <!-- 引入js -->
 <script src="../plugins/jquery/js/jquery-3.4.1.min.js"></script>
