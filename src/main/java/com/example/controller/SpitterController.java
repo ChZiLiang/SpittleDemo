@@ -65,6 +65,7 @@ public class SpitterController {
         List<Spittle> spittleList=spittleService.getSpittleFromSpitter(username);
         model.addAttribute(spitter);
         model.addAttribute("spittleList",spittleList);
+        model.addAttribute("url","/profile");
         return "profile";
     }
     

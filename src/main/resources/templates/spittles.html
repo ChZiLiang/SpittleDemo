@@ -15,11 +15,11 @@
 			<div class="col-xs-12 col-md-12" style="height: 5%"></div>
 			<div class="col-xs-12 col-md-12" style="height: 40%">
 				<form method="POST" th:object="${spittle}">
-					<div  class="form-group col-xs-12 col-md-8 offset-md-2">
+					<div class="form-group col-xs-12 col-md-10 offset-md-1">
 						<textarea class="form-control" rows="6" th:field="*{message}">
 						</textarea>
 					</div>
-					<div class="form-group col-xs-12 col-md-8 offset-md-2">
+					<div class="form-group col-xs-12 col-md-10 offset-md-1">
 						<div style="text-align: right">
 							<input class="btn btn-primary" type="submit" value="发言">
 							<!--  <botton class="btn" type="submit">登录</botton> -->
@@ -28,22 +28,24 @@
 				</form>
 			</div>
 			<div class="col-xs-12 col-md-12" style="height: 5%"></div>
-			<div class="col-xs-12 col-md-12" style="height: 45%">
-				<p>Recent Spittles</p>
-				<div>
-					<li th:each="spittle,spittleState:${spittleList}">
-						<div class="spittleMessage" th:text="${spittle.message}"></div>
-						<div>
-							<span class="spittleTime"
-								th:text="'Send Time:'+${#dates.format(spittle.time,'yyyy-MM-dd HH:mm:ss')}"></span>
-							<span class="spittleUsername"
-								th:text="'Send By:'+${spittle.username}"></span> <span
-								class="spittleLocation"
-								th:text="'Send Location:('+${spittle.latitude}+','+${spittle.longitude}+')'">
-								(x,y) </span>
+			<div class="col-xs-12 col-md-10 offset-md-1" style="height: 45%">
+				<ul class="list-group">
+					<li th:each="spittle,spittleState:${spittleList}"
+						class="list-group-item">
+						<div class="row">
+							<div class="spittleUsername col-xs-4 col-md-4 mr-auto"
+								th:text="${spittle.username}"></div>
+							<div class="spittleTime col-xs-6 col-md-6 ml-auto" style="text-align:right"
+								th:text="${#dates.format(spittle.time,'yyyy-MM-dd HH:mm:ss')}">
+							</div>
+						</div>
+						<div class="row">
+							<div class="spittleMessage col-xs-12 col-md-12"
+								style="word-break: break-all; word-wrap: break-all;"
+								th:text="${spittle.message}"></div>
 						</div>
 					</li>
-				</div>
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -51,5 +53,6 @@
 <!-- 引入js -->
 <script src="../plugins/jquery/js/jquery-3.4.1.min.js"></script>
 <script src="../plugins/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+<script src="../js/nav.js"></script>
 <script src="../js/SetSize.js"></script>
 </html>

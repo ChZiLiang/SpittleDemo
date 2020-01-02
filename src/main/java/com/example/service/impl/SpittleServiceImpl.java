@@ -2,6 +2,7 @@ package com.example.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,15 +38,17 @@ public class SpittleServiceImpl implements SpittleService{
 	public List<Spittle> getAllSpittle() {
 		// TODO Auto-generated method stub
 		List<Spittle> spittleList=spittleMapper.getAllSpittle();
-		for(Spittle spittle:spittleList) {
+		/*for(Spittle spittle:spittleList) {
 			System.out.println(spittle.getTime());
-		}
+		}*/
+		Collections.reverse(spittleList);
 		return spittleList;
 	}
 
 	@Override
 	public List<Spittle> getSpittleFromSpitter(String username) {
 		List<Spittle> spittles=spittleMapper.getSpittleFromSpitter(username);
+		Collections.reverse(spittles);
 		return spittles;
 	}
 

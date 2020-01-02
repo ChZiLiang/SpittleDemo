@@ -25,6 +25,7 @@ public class SpittleController {
     	}else {
     		model.addAttribute(new Spittle());
     		model.addAttribute("spittleList",spittleService.getAllSpittle());
+    		model.addAttribute("url","/spittles");
             return "spittles";
     	}
     }

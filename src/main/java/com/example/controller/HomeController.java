@@ -2,7 +2,7 @@ package com.example.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -23,4 +23,9 @@ public class HomeController {
     	model.addAttribute("url",request.getRequestURI());
         return "home";
     }
+	
+	@RequestMapping(value= {"/searchSomething"},method=GET)
+	public String searchSomething() {
+		return "search";
+	}
 }
