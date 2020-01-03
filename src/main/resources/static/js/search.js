@@ -11,6 +11,9 @@ function searchSth(){
 			 window.location.href =
 		}
 	})*/
-	window.location.href="/searchSomething";
+	//拼接url，用window.location.href实现跳转+传参
+	var url="searchSomething/"+searchText;
+	console.log(url);
+	window.location.href=url;
 }
 //$('#search').click(searchSth());

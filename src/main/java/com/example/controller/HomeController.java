@@ -24,8 +24,9 @@ public class HomeController {
         return "home";
     }
 	
-	@RequestMapping(value= {"/searchSomething"},method=GET)
-	public String searchSomething() {
+	@RequestMapping(value= {"/searchSomething/{searchText}"},method=GET)
+	public String searchSomething(@PathVariable("searchText") String searchText,Model model) {
+		System.out.println(searchText);
 		return "search";
 	}
 }
